@@ -1,0 +1,3 @@
+title=Perform Sync
+info=ABSORBAROO automatically syncs whitelists to SDWAN appliances and DNS Edge based on the interval setup in the "Setup Whitelist" page.
+subtext=Note! You can perform a manual sync using the "Sync Now" button

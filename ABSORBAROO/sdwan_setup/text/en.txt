@@ -1,0 +1,3 @@
+title=Setup SDWAN sync
+info=This is the SDWAN setup page for ABSORBAROO. This is currently supported to work with Cisco Meraki. ABSORBAROO syncs whitelists to Meraki to allow it to bend out traffic destined to this whitelist.
+subtext=NOTE! Customers should have a pre-existing organization and network template on Meraki for this to work.

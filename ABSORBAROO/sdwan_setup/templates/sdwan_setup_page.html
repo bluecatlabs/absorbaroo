@@ -1,0 +1,32 @@
+<!-- Copyright 2018 BlueCat Networks. All rights reserved. -->
+
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="css/sdwan_setup_page.css?version={{ g.version | urlencode }}">
+{% endblock %}
+
+{% block title %}
+{{ text['title'] }}
+{% endblock %}
+
+{% block heading %}
+{{ text['title'] }}
+{% endblock %}
+
+{% block custom %}
+
+    <p>{{ text['info'] }}</p>
+    <hr>
+    <h5>{{ text['subtext'] }}</h5>
+    <hr>
+
+    <!--Your page's HTML goes here.-->
+    {% from "form_helper.html" import render_form %}
+    {{ render_form(form, action=url_for('sdwan_setupsdwan_setup_sdwan_setup_page_form'), id="sdwan_setup_page_form") }}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="js/sdwan_setup_page.js?version={{ g.version | urlencode }}"></script>
+{% endblock %}

@@ -1,0 +1,13 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Mac OS junk
+.DS_Store
+
+# Config / status files
+ABSORBAROO/edgesync.txt
+ABSORBAROO/hash
+ABSORBAROO/meraki.config
+ABSORBAROO/wl.config

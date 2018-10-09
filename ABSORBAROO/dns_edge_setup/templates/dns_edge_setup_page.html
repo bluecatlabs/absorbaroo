@@ -1,0 +1,32 @@
+<!-- Copyright 2018 BlueCat Networks. All rights reserved. -->
+
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="css/dns_edge_setup_page.css?version={{ g.version | urlencode }}">
+{% endblock %}
+
+{% block title %}
+{{ text['title'] }}
+{% endblock %}
+
+{% block heading %}
+{{ text['title'] }}
+{% endblock %}
+
+{% block custom %}
+
+    <p>{{ text['info'] }}</p>
+    <hr>
+    <h5>{{ text['subtext'] }}</h5>
+    <hr>
+
+    <!--Your page's HTML goes here.-->
+    {% from "form_helper.html" import render_form %}
+    {{ render_form(form, action=url_for('dns_edge_setupdns_edge_setup_dns_edge_setup_page_form'), id="dns_edge_setup_page_form") }}
+
+{% endblock %}
+
+{% block scripts %}
+<script src="js/dns_edge_setup_page.js?version={{ g.version | urlencode }}"></script>
+{% endblock %}
