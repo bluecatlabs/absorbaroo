@@ -8,6 +8,11 @@ The following is a typical use case architecture:
 
 ![screenshot](img/absorbaroo_diagram.png?raw=true "absorbaroo_diagram")  
 
+## Installation  
+Absorbaroo runs on the BlueCat Gateway platform.  
+Copy the absorbaroo directory to bluecat_portal/workflows/
+
+`cp -r absorbaroo <bluecat_portal>/workflows/`  
 
 ## Prerequisites  
 1. **Additional Python3 Library**  
