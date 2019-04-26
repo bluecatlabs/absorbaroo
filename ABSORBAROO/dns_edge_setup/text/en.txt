@@ -1,3 +1,0 @@
-title=Setup DNS Edge
-info=Setup page to allow ABSORBAROO to sync to DNS Edge.
-subtext=NOTE! For the Edge URL, please enter the string without the https://. For example - ce4028bf.pilot.bluec.at

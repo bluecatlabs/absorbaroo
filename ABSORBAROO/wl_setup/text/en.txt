@@ -1,4 +1,0 @@
-title=Setup Whitelist
-info=This is the ABSORBAROO whitelist setup page. Use this page to define your whitelist URL and the interval at which you want ABSORBAROO to automatically check for whitelist updates.
-subtext=NOTE! ABSORBAROO currently supports whitelists in JSON format. If the url provided is valid and supported, you should see the OK button enabled.
-
