@@ -75,7 +75,7 @@ If you are unsure, check all.
 Click *"SAVE"*  
 
 2. **Set DNS Edge Configurations**  
-![screenshot](img/absorbaroo2.jpg?raw=true "absorbaroo2")   
+![screenshot](img/absorbaroo2.jpg)   
 
 Select the *DNS Edge* tab and set the following parameters:  
 - DNS Edge URL:  
