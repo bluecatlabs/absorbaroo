@@ -18,7 +18,7 @@ import sys
 
 from flask import request, url_for, redirect, render_template, flash, g, jsonify
 from wtforms.validators import URL, DataRequired
-from wtforms import StringField, PasswordField, SubmitField, SelectField
+from wtforms import StringField, FileField, SubmitField, SelectField
 
 from bluecat.wtform_extensions import GatewayForm
 
@@ -69,12 +69,16 @@ class GenericFormTemplate(GatewayForm):
         validators=[URL(message=invalid_url_message)],
         render_kw={"placeholder": "https://api-<Edge Instance>.bluec.at"}
     )
-    edge_username = StringField(
-        label=text['label_edge_username'],
+    edge_key_file = FileField(
+        text['label_edge_key_file']
+    )
+    edge_client_id = StringField(
+        label=text['label_edge_client_id'],
         validators=[DataRequired(message=require_message)]
     )
-    edge_password = PasswordField(
-        label=text['label_edge_password']
+    edge_secret = StringField(
+        label=text['label_edge_secret'],
+        validators=[DataRequired(message=require_message)]
     )
     edge_domainlist = StringField(
         label=text['label_edge_domainlist'],
@@ -137,12 +141,12 @@ def absorbaroo_absorbaroo_page():
     value = absorbaroo.get_value('edge_url')
     if value is not None:
         form.edge_url.data = value
-    value = absorbaroo.get_value('edge_username')
+    value = absorbaroo.get_value('edge_client_id')
     if value is not None:
-        form.edge_username.data = value
-    value = absorbaroo.get_value('edge_password')
+        form.edge_client_id.data = value
+    value = absorbaroo.get_value('edge_secret')
     if value is not None:
-        form.edge_password.data = value
+        form.edge_secret.data = value
     value = absorbaroo.get_value('edge_domainlist')
     if value is not None:
         form.edge_domainlist.data = value['name']
@@ -227,10 +231,8 @@ def absorbaroo_absorbaroo_page_form():
         absorbaroo.set_value('o365_client_id', form.o365_client_id.data)
 
         absorbaroo.set_value('edge_url', form.edge_url.data)
-        absorbaroo.set_value('edge_username', form.edge_username.data)
-
-        if form.edge_password.data != '':
-            absorbaroo.set_value('edge_password', form.edge_password.data)
+        absorbaroo.set_value('edge_client_id', form.edge_client_id.data)
+        absorbaroo.set_value('edge_secret', form.edge_secret.data)
 
         domainlist = absorbaroo.get_value('edge_domainlist')
         if domainlist['name'] != form.edge_domainlist.data:

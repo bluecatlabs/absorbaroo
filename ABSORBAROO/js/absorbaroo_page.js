@@ -13,8 +13,8 @@
 // limitations under the License.
 //
 // By: BlueCat Networks
-// Date: 04-25-19
-// Gateway Version: 18.10.2
+// Date: 2019-08-28
+// Gateway Version: 19.5.1
 // Description: Absorbaroo V2 JS
 var colModel = []
 
@@ -60,6 +60,21 @@ $(document).ready(function()
         caption: 'Service Areas'
     });
 
+    $('#edge_key_file').on('change', function(event)
+    {
+        var key_file = document.getElementById('edge_key_file');
+        var file = key_file.files[0];
+
+        var reader = new FileReader();
+        reader.addEventListener('load', update_client_key, false);
+        reader.readAsText(file)
+
+        function update_client_key(event){
+            var access_key = JSON.parse(event.target.result);
+            document.getElementById('edge_client_id').value = access_key.clientId;
+            document.getElementById('edge_secret').value = access_key.clientSecret;
+        }
+    });
 
     $('#myTab a').click(function(e) {
       e.preventDefault();

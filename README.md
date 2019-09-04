@@ -1,12 +1,15 @@
 # Absorbaroo  
-**Bluecat Gateway Version:** 18.10.2 and greater  
-**BlueCat DNS Edge Version:** 2018.11 and greater  
+**Bluecat Gateway Version:** v18.10.2 and greater  
+**BlueCat DNS Edge Version:** v2019.8 and greater  
 
 Absorbaroo downloads Office 365 Whitelists and syncs them to DNS Edge and Meraki SDWAN.  
 Customers using SDWAN for traffic optimization can leverage this workflow to allow safe traffic to Office 365 sites.  
 The following is a typical use case architecture:  
 
 ![screenshot](img/absorbaroo_diagram.png?raw=true "absorbaroo_diagram")  
+
+## Changes in this release  
+1. Supports the updated method for obtaining API access token from DNS Edge v2019.8.  
 
 ## Installation  
 Absorbaroo runs on the BlueCat Gateway platform.  
@@ -34,6 +37,22 @@ After downloading, extract the following two files: *"ui.jqgrid.css"* and *"jque
 Copy the two files to `/portal/static/js/vendor/jqgrid/` inside the Bluecat Gateway container.  
 Create a *"jqgrid"* directory if it does not exist.   
 
+4. **DNS Edge CI Access Key Sets**  
+This workflow requires the DNS Edge CI access key sets JSON file.  
+Log in to the DNS Edge Customer Instance via browser.  
+Click "Profile" at the top right corner under  "ACCOUNT".  
+    <img src="img/dnsedge_key1.jpg" width="160px">   
+
+
+      After opening the Profile page, click the blue cross to create new access key sets.  
+      <img src="img/dnsedge_key2.jpg" width="160px">   
+
+
+
+      Click *DOWNLOAD .JSON FILE* and save the JSON file to a directory of your choosing.  
+      <img src="img/dnsedge_key3.jpg" width="640px">     
+
+
 
 ## Usage   
 
@@ -56,7 +75,7 @@ If you are unsure, check all.
 Click *"SAVE"*  
 
 2. **Set DNS Edge Configurations**  
-![screenshot](img/absorbaroo2.jpg?raw=true "absorbaroo2")   
+![screenshot](img/absorbaroo2.jpg)   
 
 Select the *DNS Edge* tab and set the following parameters:  
 - DNS Edge URL:  
@@ -64,12 +83,9 @@ This URL will be the BlueCat DNS Edge CI.
 The URL should be in the following format:  
 *"https://api-<Your_Edge_CI_URL>"*  
 
-- User Name:  
-This will be the user name which will be used to login to BlueCat DNS Edge CI.  
-Typically it will be a valid e-mail address.  
-
-- Password:  
-This will be the password to authenticate the above user name.  
+- Access Key File (JSON):  
+Click `Choose File` and open the DNS Edge Access Key Sets JSON file which contains *Client ID* and *Client Secret*.  
+Once the JSON file is chosen, *Client Id:* and *Client Secret:* will be automatically populated.  
 
 - Domain List  
 Type in the domain list which corresponds to the Office 365 whitelist.  

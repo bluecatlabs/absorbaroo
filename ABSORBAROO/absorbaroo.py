@@ -159,7 +159,7 @@ class Absorbaroo(object):
 
     def _update_domainlist(self, edge_api, endpoints):
         succeed = False
-        if edge_api.login(self.get_value('edge_username'), self.get_value('edge_password')):
+        if edge_api.login(self.get_value('edge_client_id'), self.get_value('edge_secret')):
             domainlist = self.get_value('edge_domainlist')
             if '' == domainlist['edge_id']:
                 domainlist['edge_id'] = self._get_domainlist_id(edge_api, domainlist['name'])
@@ -216,7 +216,6 @@ class Absorbaroo(object):
             new_rules.append(delimiter_rule)
 
         if self._debug:
-            print('Dumping New Rules.......')
             debug_file = os.path.dirname(os.path.abspath(__file__)) + '/firewall_rules.txt'
             with open(debug_file, 'w') as f:
                 f.write(str(json.dumps(new_rules, indent=2)))
