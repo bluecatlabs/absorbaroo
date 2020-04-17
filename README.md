@@ -9,6 +9,10 @@ The following is a typical use case architecture:
 ![screenshot](img/absorbaroo_diagram.png?raw=true "absorbaroo_diagram")  
 
 ## Changes in this release  
+1. Supports the individual selection of service category (such as Optimize, Allow, Default).
+2. Allows to save configurations without SDWAN settings.
+
+## Changes in previous release  
 1. Supports the updated method for obtaining API access token from DNS Edge v2019.8.  
 
 ## Installation  

@@ -15,8 +15,8 @@
 #
 # By: BlueCat Networks
 # Date: 2019-08-28
-# Gateway Version: 19.5.1
-# Description: BlueCat Gateway module for O365
+# Gateway Version: 19.5.1 or greater
+# Description: BlueCat Gateway module for Microsoft Office 365 calls
 
 import os
 import sys
@@ -122,3 +122,4 @@ class EndpointsAPI(object):
         if not self._loaded:
             self._load_endpoints(instance)
         return self._endpoints
+        

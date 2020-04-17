@@ -1,26 +1,34 @@
 {
-    "o365_instance": "",
+    "o365_instance": "Worldwide",
     "o365_client_id": "",
     "o365_service_areas": [
         {
             "name": "Exchange",
             "display_name": "Exchange Online",
-            "check": "True"
+            "optimize": "True",
+            "allow": "True",
+            "default": "False"
         },
         {
             "name": "Skype",
             "display_name": "Skype for Business Online and Microsoft Teams",
-            "check": "True"
+            "optimize": "True",
+            "allow": "True",
+            "default": "False"
         },
         {
             "name": "SharePoint",
             "display_name": "SharePoint Online and OneDrive for Business",
-            "check": "True"
+            "optimize": "True",
+            "allow": "True",
+            "default": "False"
         },
         {
             "name": "Common",
             "display_name": "Microsoft 365 Common and Office Online",
-            "check": "True"
+            "optimize": "True",
+            "allow": "True",
+            "default": "False"
         }
     ],
     "edge_url": "",

@@ -98,6 +98,19 @@ class Absorbaroo(object):
     def _load(self):
         with open(Absorbaroo._config_file) as f:
             self._config = json.load(f)
+            
+            # for lower compatibility.
+            for area in self._config['o365_service_areas']:
+                if 'check' in area.keys():
+                    if 'True' == area['check']:
+                        area['optimize'] = 'True'
+                        area['allow'] = 'True'
+                        area['default'] = 'False'
+                    else:
+                        area['optimize'] = 'False'
+                        area['allow'] = 'False'
+                        area['default'] = 'False'
+                    del area['check']
 
     def get_value(self, key):
         value = None
@@ -224,16 +237,16 @@ class Absorbaroo(object):
         succeed = True
         return succeed
 
-    def _include(self, serviceArea):
+    def _include(self, serviceArea, category):
         for sa in self.get_value('o365_service_areas'):
             if serviceArea == sa['name']:
-                return ("True" == sa['check'])
+                return ('True' == sa[category.lower()])
         return False
 
     def _get_endpoints(self, ep_api):
         endpoints = []
         for ep in ep_api.get_endpoints(self.get_value('o365_instance')):
-            if self._include(ep['serviceArea']):
+            if self._include(ep['serviceArea'], ep['category']):
                 endpoints.append(ep)
         return endpoints
 

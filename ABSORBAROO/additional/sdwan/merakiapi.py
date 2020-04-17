@@ -15,7 +15,7 @@
 #
 # By: BlueCat Networks
 # Date: 2019-08-28
-# Gateway Version: 19.5.1
+# Gateway Version: 19.5.1 or greater
 # Description: BlueCat Gateway module for Meraki API calls
 
 import os
@@ -28,8 +28,11 @@ api_base = 'https://api.meraki.com/api'
 api_url = {
     'get_organizations': api_base + '/v0/organizations',
     'get_config_templates': api_base + '/v0/organizations/{id}/configTemplates',
+    'get_networks': api_base + '/v0/organizations/{id}/networks',
+    'get_clients': api_base + '/v0/networks/{id}/clients',
     'get_firewall_rules': api_base + '/v0/networks/{id}/l3FirewallRules',
     'update_firewall_rules': api_base + '/v0/networks/{id}/l3FirewallRules',
+    'get_client_detail': '/manage/usage/list/overview#c={id}'
 }
 
 class MerakiException(Exception): pass
@@ -140,3 +143,49 @@ class MerakiAPI(object):
         except requests.exceptions.RequestException as e:
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
+                
+    def get_networks(self, id):
+        networks = None
+        try:
+            response = requests.get(api_url['get_networks'].format(id=id), headers=self._headers)
+            if response.status_code == 200:
+                networks = response.json()
+            else:
+                if self._debug:
+                    print('DEBUG: failed response <%s>' % str(vars(response)))
+                raise MerakiException(response)
+        except requests.exceptions.RequestException as e:
+            if self._debug:
+                print('DEBUG: Exceptin <%s>' % str(e))
+        return networks
+        
+    def get_network(self, id, name):
+        for network in self.get_networks(id):
+            if name == network['name']:
+                return network
+        return None
+        
+    def get_clients(self, id):
+        clients = []
+        starting_after = ''
+        while True:
+            try:
+                params = {'perPage': 30, 'startingAfter': starting_after}
+                response = requests.get(api_url['get_clients'].format(id=id), headers=self._headers, params=params)
+                if response.status_code == 200:
+                    items = response.json()
+                else:
+                    if self._debug:
+                        print('DEBUG: failed response <%s>' % str(vars(response)))
+                    raise MerakiException(response)
+                clients.extend(items)
+                if len(items) < 30:
+                    break
+                starting_after = items[-1]['id']
+            except requests.exceptions.RequestException as e:
+                if self._debug:
+                    print('DEBUG: Exceptin <%s>' % str(e))
+        return clients
+        
+    def get_client_detail_url(self, dashboard_url, client_id):
+        return dashboard_url + api_url['get_client_detail'].format(id=client_id)
