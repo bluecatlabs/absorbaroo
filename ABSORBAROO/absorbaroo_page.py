@@ -87,16 +87,13 @@ class GenericFormTemplate(GatewayForm):
 
     # SDWAN Pane
     sdwan_key = StringField(
-        label=text['label_sdwan_key'],
-        validators=[DataRequired(message=require_message)]
+        label=text['label_sdwan_key']
     )
     sdwan_orgname = StringField(
-        label=text['label_sdwan_orgname'],
-        validators=[DataRequired(message=require_message)]
+        label=text['label_sdwan_orgname']
     )
     sdwan_tmpname = StringField(
-        label=text['label_sdwan_tmpname'],
-        validators=[DataRequired(message=require_message)]
+        label=text['label_sdwan_tmpname']
     )
     sdwan_delimit_key = StringField(
         label=text['label_sdwan_delimit_key']
@@ -191,11 +188,21 @@ def load_col_model():
         {'index':'name', 'name':'name', 'hidden':True, 'sortable':False},
         {
             'label': text['label_col_name'], 'index':'display_name', 'name':'display_name',
-            'width':400, 'sortable':False
+            'width':360, 'sortable':False
         },
         {
-            'label': text['label_col_check'], 'index':'check', 'name':'check',
-            'width':60, 'align':'center', 'sortable':False,
+            'label': text['label_col_optimize'], 'index':'optimize', 'name':'optimize',
+            'width':100, 'align':'center', 'sortable':False,
+            'editoptions': { 'value':'True:False'},'formatter':'checkbox'
+        },
+        {
+            'label': text['label_col_allow'], 'index':'allow', 'name':'allow',
+            'width':100, 'align':'center', 'sortable':False,
+            'editoptions': { 'value':'True:False'},'formatter':'checkbox'
+        },
+        {
+            'label': text['label_col_default'], 'index':'default', 'name':'default',
+            'width':100, 'align':'center', 'sortable':False,
             'editoptions': { 'value':'True:False'},'formatter':'checkbox'
         }
     ]

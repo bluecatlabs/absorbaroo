@@ -54,7 +54,7 @@ $(document).ready(function()
         url: '/absorbaroo/load_service_areas',
         datatype: 'json',
         colModel: colModel,
-        height: 150,
+        height: 'auto',
         pager : '#pager',
         scroll: true,
         caption: 'Service Areas'
