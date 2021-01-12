@@ -43,7 +43,7 @@ class MerakiAPI(object):
         self._api_key = api_key
         self._headers = {'X-Cisco-Meraki-API-Key': api_key}
         self._debug = debug
-
+        
     def validate_api_key(self):
         valid = False
         try:
@@ -57,7 +57,7 @@ class MerakiAPI(object):
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
         return valid
-
+        
     def get_organizations(self):
         organizations = []
         try:
@@ -72,13 +72,13 @@ class MerakiAPI(object):
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
         return organizations
-
+        
     def get_organization(self, name):
         for org in self.get_organizations():
             if name == org['name']:
                 return org
         return None
-
+        
     def get_config_templates(self, id):
         templates = []
         try:
@@ -93,13 +93,13 @@ class MerakiAPI(object):
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
         return templates
-
+        
     def get_config_template(self, id, name):
         for template in self.get_config_templates(id):
             if name == template['name']:
                 return template
         return None
-
+        
     def get_firewall_rules(self, id):
         rules = []
         try:
@@ -114,7 +114,7 @@ class MerakiAPI(object):
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
         return rules
-
+        
     def create_allow_firewall_rule(self, domains, port, protocol, comments):
         rule = {}
         rule['protocol'] = protocol.lower()
@@ -126,13 +126,13 @@ class MerakiAPI(object):
         rule['srcCidr'] = 'Any'
         rule['syslogEnabled'] = False
         return rule
-
+        
     def update_firewall_rules(self, id, rules):
         try:
             data = {}
             data['rules'] = rules
             data['syslogEnabled'] = True
-
+            
             response = requests.put(api_url['update_firewall_rules'].format(id=id), json=data, headers=self._headers)
             if response.status_code == 200:
                 return response.json()
