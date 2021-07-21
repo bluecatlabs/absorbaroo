@@ -1,4 +1,4 @@
-<!-- Copyright 2020 BlueCat Networks (USA) Inc. and its affiliates
+<!-- Copyright 2021 BlueCat Networks (USA) Inc. and its affiliates
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@ limitations under the License.
 
 By: BlueCat Networks
 Date: 2019-08-28
-Gateway Version: 19.5.1
+Gateway Version: 20.12.1
 Description: Absorbaroo V2 HTML -->
 
 {% extends "base-no-box.html" %}
@@ -115,14 +115,22 @@ Description: Absorbaroo V2 HTML -->
         <!-- don't remove the following token -->
         {{ form.csrf_token }}
 
-        <div class="row">
-            <button id="submit" name="submit" type="submit" class="btn-primary" value="submit">
-                {{ text['label_submit'] }}
-            </button>
+        <div class="row" style="margin-left: 2px;">
+            <div style="display: inline-block;">
+                <div class="input-group">
+                    <button id="submit" name="submit" type="submit" class="btn-primary" value="submit">
+                        {{ text['label_submit'] }}
+                    </button>
+                </div>
+            </div>
             &nbsp;
-            <button id="cancel" name="cancel" type="button" class="btn-default">
-                {{ text['label_cancel'] }}
-            </button>
+            <div style="display: inline-block;">
+                <div class="input-group">
+                    <button id="cancel" name="cancel" type="button" class="btn-default">
+                        {{ text['label_cancel'] }}
+                    </button>
+                </div>
+            </div>
         </div>
     </form>
 </div>

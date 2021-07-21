@@ -35,7 +35,7 @@ class EndpointsAPI(object):
         self._service_areas = []
         self._endpoints = []
         self._debug = debug
-
+        
     def validate_client_id(self):
         valid = False
         try:
@@ -50,10 +50,10 @@ class EndpointsAPI(object):
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
         return valid
-
+        
     def _collect_service_areas(self):
         service_area_dict = {}
-
+        
         for ep in self._endpoints:
             service_area = ep['serviceArea']
             if service_area not in service_area_dict:
@@ -63,7 +63,7 @@ class EndpointsAPI(object):
                     'check': True
                 }
         self._service_areas = list(service_area_dict.values())
-
+        
     def get_versions(self):
         versions = []
         try:
@@ -78,7 +78,7 @@ class EndpointsAPI(object):
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
         return versions
-
+        
     def get_current_version(self, instance):
         version = None
         try:
@@ -94,7 +94,7 @@ class EndpointsAPI(object):
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
         return version
-
+        
     def _load_endpoints(self, instance):
         valid = False
         try:
@@ -112,12 +112,12 @@ class EndpointsAPI(object):
             if self._debug:
                 print('DEBUG: Exceptin <%s>' % str(e))
         return valid
-
+        
     def get_service_areas(self, instance):
         if not self._loaded:
             self._load_endpoints(instance)
         return self._service_areas
-
+        
     def get_endpoints(self, instance):
         if not self._loaded:
             self._load_endpoints(instance)
